@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require turbolinks
+//= require jquery
 //= require twitter/bootstrap
 //= require Chart.bundle
 //= require chartkick
