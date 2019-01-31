@@ -16,13 +16,15 @@ class TinkoffService
   private
 
   def calculate
-    rates.select { |r| r['category'] == 'DepositPayments' }.each_with_object([]) do |line, result|
-      next unless line['fromCurrency']['name'].in?(FROM_CURRENCIES) && line['toCurrency']['name'] == to_currency
-      result << {
-        currency: line['fromCurrency']['name'],
-        buy: line['buy'],
-        sell: line['sell']
-      }
+    rates.select { |r| r['category'] == 'DepositPayments' }.reduce([]) do |result, line|
+      if line['fromCurrency']['name'].in?(FROM_CURRENCIES) && line['toCurrency']['name'] == to_currency
+        result << {
+          currency: line['fromCurrency']['name'],
+          buy: line['buy'],
+          sell: line['sell']
+        }
+      end
+      result
     end
   end
 
