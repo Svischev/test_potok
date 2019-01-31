@@ -1,0 +1,8 @@
+.container
+  = line_chart @points, xtitle: 'Time', ytitle: 'Price', min: 55, max: 85, suffix: " RUB"
+  %br
+  %br
+  %h3 Mean values:
+  %ul.list-group
+    - @mean.each do |key, value|
+      %li.list-group-item= "#{key} = #{value}"
